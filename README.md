@@ -32,4 +32,4 @@ The tsp-solver and tsp-api services are designed to communicate with each other 
 Both services are running within Docker containers and connected via a shared network. The tsp-solver service listens to incoming messages on the RabbitMQ queue and processes them based on the specified algorithm. Once the solution is obtained, it publishes the result on another queue. The tsp-api service reads to the result queue and sends the result back to the client upon getting the result.
 
 ## License
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License.
