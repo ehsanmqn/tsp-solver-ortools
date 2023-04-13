@@ -1,0 +1,58 @@
+version: '3'
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    hostname: rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=admin
+      - RABBITMQ_DEFAULT_VHOST=/
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - shared_network
+
+  tsp-solver:
+    build:
+      dockerfile: Dockerfile
+      context: ./tsp-solver
+    command: bash -c "chmod +x wait-for-it.sh && ./wait-for-it.sh rabbitmq:5672 -- python main.py"
+    container_name: tsp-solver
+    hostname: tsp-solver
+    volumes:
+      - ./tsp-solver:/tsp-solver
+    stdin_open: true
+    tty: true
+    networks:
+      - shared_network
+    environment:
+      - MESSAGE_BROKER=rabbitmq
+    depends_on:
+      - rabbitmq
+
+  tsp-api:
+    build:
+      dockerfile: Dockerfile
+      context: ./tsp-api
+    command: bash -c "chmod +x wait-for-it.sh && ./wait-for-it.sh rabbitmq:5672 -- python manage.py collectstatic --noinput && python manage.py runserver 0.0.0.0:8000"
+    container_name: tsp-api
+    hostname: tsp-api
+    volumes:
+      - ./tsp-api:/tsp-api
+    ports:
+      - "8000:8000"
+    stdin_open: true
+    tty: true
+    networks:
+      - shared_network
+    environment:
+      - MESSAGE_BROKER=rabbitmq
+    depends_on:
+      - rabbitmq
+
+networks:
+  shared_network:
+    driver: bridge
