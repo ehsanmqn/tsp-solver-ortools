@@ -7,7 +7,7 @@ This project contains two different software projects as submodules: tsp-solver 
 ## How to run
 1. Clone the repository and then run the following command to initialize the submodules:
 ```bash
-git submodule update --init --recursive
+git submodule update --init --recursive --remote
 ```
 
 2. In order to run the whole application, you can use the following command:
