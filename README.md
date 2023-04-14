@@ -1,5 +1,5 @@
 # TSP Solver & Web API
-This project contains two different software projects as submodules: tsp-solver and tsp-api. The tsp-solver is a basic TSP/VRP solver designed according to the task specification. The tsp-api is a Django project that provides APIs to the user to make a RESTful web service with a few endpoints, allowing the customer to input problem instances and obtain results from the underlying pub/sub queues.
+This project contains two different software projects as submodules: (tsp-solver)[https://github.com/ehsanmqn/tsp-solver] and (tsp-api)[https://github.com/ehsanmqn/tsp-api]. The tsp-solver is a basic TSP/VRP/VRPTW solver designed according to the task specification. The tsp-api is a Django project that provides APIs to the user to make a RESTful web service with a few endpoints, allowing the user to input problem instances and obtain results from the underlying pub/sub queues. Documentation regarding each projects provided in their corresponding github repository.
 
 ## Prerequisites
 * Docker and docker-compose should be installed on the host machine.
@@ -12,7 +12,7 @@ git submodule update --init --recursive --remote
 
 2. In order to run the whole application, you can use the following command:
 ```bash
-docker-compose up
+docker-compose up --build
 ```
 
 This command will start both the tsp-solver and tsp-api services along with a RabbitMQ message broker service. All the necessary dependencies will be downloaded and installed automatically.
@@ -21,8 +21,9 @@ This command will start both the tsp-solver and tsp-api services along with a Ra
 
 ## How to use
 The tsp-api project provides the following endpoints:
-* `/vrp-submit/`: This endpoint allows the customer to upload problem instance data in the form of a JSON string.
-* `/vrp-status/`: This endpoint allows the customer to get result of an uploaded problem instance by sending the corresponding id field as a parameter.
+* `/vrp-tsp/`: This endpoint allows the user to upload VRP/TSP problem instance data in the form of a JSON string.
+* `/vrptw/`: This endpoint allows the user to upload VRPTW problem instance data in the form of a JSON string.
+* `/status/`: This endpoint allows the user to get result of an uploaded problem instance by sending the corresponding id field as a parameter.
 
 More information regarding how to use these APIs provided in the corresponding project README.md file located in the [project repository](https://github.com/ehsanmqn/tsp-api).
 
