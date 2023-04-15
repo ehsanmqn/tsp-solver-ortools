@@ -1,5 +1,5 @@
 # TSP Solver & Web API
-This project contains two different software projects as submodules: (tsp-solver)[https://github.com/ehsanmqn/tsp-solver] and (tsp-api)[https://github.com/ehsanmqn/tsp-api]. The tsp-solver is a basic TSP/VRP/VRPTW solver designed according to the task specification. The tsp-api is a Django project that provides APIs to the user to make a RESTful web service with a few endpoints, allowing the user to input problem instances and obtain results from the underlying pub/sub queues. Documentation regarding each projects provided in their corresponding github repository.
+This project contains two different software projects as submodules: [tsp-solver](https://github.com/ehsanmqn/tsp-solver) and [tsp-api](https://github.com/ehsanmqn/tsp-api). The tsp-solver is a basic TSP/VRP/VRPTW solver designed according to the task specification. The tsp-api is a Django project that provides APIs to the user to call a RESTful web service, allowing the user to input problem instances and obtain results from the underlying pub/sub queues. Documentation regarding each projects provided in their corresponding github repository.
 
 ## Prerequisites
 * Docker and docker-compose should be installed on the host machine.
@@ -21,8 +21,8 @@ This command will start both the tsp-solver and tsp-api services along with a Ra
 
 ## How to use
 The tsp-api project provides the following endpoints:
-* `/vrp-tsp/`: This endpoint allows the user to upload VRP/TSP problem instance data in the form of a JSON string.
-* `/vrptw/`: This endpoint allows the user to upload VRPTW problem instance data in the form of a JSON string.
+* `/vrp-tsp/`: This endpoint allows the user to upload VRP/TSP problem instance data in the form of a JSON.
+* `/vrptw/`: This endpoint allows the user to upload VRPTW problem instance data in the form of a JSON.
 * `/status/`: This endpoint allows the user to get result of an uploaded problem instance by sending the corresponding id field as a parameter.
 
 More information regarding how to use these APIs provided in the corresponding project README.md file located in the [project repository](https://github.com/ehsanmqn/tsp-api).
