@@ -17,7 +17,7 @@ docker-compose up --build
 
 This command will start both the tsp-solver and tsp-api services along with a RabbitMQ message broker service. All the necessary dependencies will be downloaded and installed automatically.
 
-3. Once the containers are up and running, you can access the tsp-api on your browser at http://localhost:8000/ or using any REST client tool like Postman.
+3. Once the containers are up and running, you can access the tsp-api on your browser at http://127.0.0.1:8000/api/v1/vrp-tsp/ or using any REST client tool like Postman.
 
 ## How to use
 The tsp-api project provides the following endpoints:
